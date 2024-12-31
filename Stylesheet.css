@@ -1,0 +1,877 @@
+/* General Reset and Layout */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensures the body takes up the full viewport height */
+    display: flex;
+    flex-direction: column; /* Enables vertical stacking of child elements */
+}
+
+body {
+    font-family: 'Lato', Arial, sans-serif;
+    background-image: url(Background.png);
+    background-color: rgb(51, 51, 51); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #333;
+}
+
+/* Header Section */
+header {
+    background-color: rgba(34, 34, 34, 0.8);
+    color: #222;
+    padding: 1px 0;
+    text-align: center;
+    position: relative;
+}
+
+.logo {
+    width: 130px; /* Explicit width for better control */
+    max-width: 100%; /* Ensures it doesn't exceed its container */
+    height: auto; /* Maintains aspect ratio */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Login og Cart Buttons */
+.login-button {
+    color: #AA4A44;
+    padding: 40px 0;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    left: 700px;
+    display: inline-block;
+}
+
+.cart-button {
+    color: #fff;
+    text-align: center;
+    background-color: #AA4A44;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.cart-button:hover {
+    background-color: #923f3a;
+}
+
+/* Sign-in Button */
+.signin-button {
+    background-color: #AA4A44;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.signin-button:hover {
+    background-color: #77342f;
+}
+
+.signin-button:active {
+    background-color: #77342f;
+}
+
+/* Cart container */
+.cart-container {
+    position: fixed;
+    top: 53px;
+    right: 700px;
+    z-index: 1000;
+}
+
+/* Cart Button */
+.cart-button {
+    color: #fff;
+    text-align: center;
+    background-color: #AA4A44;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Cart Dropdown */
+.cart-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Cart Button hover */
+.cart-button:hover {
+    background-color: #923f3a;
+}
+
+.cart-dropdown h3 {
+    font-size: 1.2em;
+    margin: 0 0 10px;
+    text-align: center;
+}
+
+.cart-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-dropdown ul li {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.cart-summary {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* Coupon Section in Cart Dropdown */
+.coupon-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.coupon-section input[type="text"] {
+    width: 65%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.coupon-section .apply-coupon-button {
+    background-color: #AA4A44;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.coupon-section .apply-coupon-button:hover {
+    background-color: #77342f;
+}
+
+/* Secure Checkout Button */
+.secure-checkout-button {
+    width: 100%;
+    background-color: #AA4A44;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.secure-checkout-button:hover {
+    background-color: #77342f;
+}
+
+
+/* Main Content Section */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates a 2-column layout */
+    gap: 20px; /* Space between boxes */
+}
+
+.box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9); /* Adds a light background */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.box h3 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+}
+
+/* Material Options */
+.material-options {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    flex-wrap: wrap; /* Allows buttons to wrap into a new row if needed */
+    gap: 10px; /* Adds spacing between buttons */
+    margin: 10px 0;
+    min-height: 100px; /* Ensures consistent height for all boxes */
+}
+
+/* Adjusted Box Alignment for Empty or Partial Content */
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9); /* Adds a light background */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+
+.material-options button {
+    padding: 10px 15px;
+    background-color: #AA4A44;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.material-options button:hover {
+    background-color: #77342f;
+}
+
+
+/* Slider and Cost Section */
+/* Ensure consistent styling for all slider containers */
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.slider-container input[type="range"] {
+    width: 200px;
+    margin: 10px 0;
+}
+
+.slider-container p {
+    margin: 10px 0 0;
+    font-size: 1.2em;
+}
+
+.slider-container .button {
+    margin-top: 15px;
+    background-color: #AA4A44;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.slider-container .button:hover {
+    background-color: #77342f;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px 0; /* Reduced padding for a smaller footer */
+    background-color: #222;
+    color: #fff;
+    font-size: 14px; /* Smaller font size */
+    flex-shrink: 0; /* Prevents the footer from shrinking */
+    margin-top: auto; /* Pushes the footer to the bottom */
+}
+
+/* Cart Items */
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+#cart-items li:last-child {
+    border-bottom: none;
+}
+
+.cart-item-text {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.remove-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+    background-color: #c82333;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#innloggingSkjema button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#innloggingSkjema button:hover {
+    background-color: #0056b3;
+}
+
+.login-popup {
+    display: none; /* Start skjult */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.register-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.register-content {
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Standardisert styling for order-knapper */
+#material-order,
+#component-order,
+.order-button {
+    background-color: #AA4A44;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#material-order:hover,
+#component-order:hover,
+.order-button:hover {
+    background-color: #923f3a;
+}
+
+/* Container for materials og components */
+.materials-section,
+.components-section {
+    padding: 20px;
+    margin: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Sentrerer innhold */
+}
+
+/* Overskrifter */
+.materials-section h2,
+.components-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Select dropdowns */
+.materials-section select,
+.components-section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    height: 40px; /* Fast høyde for dropdowns */
+}
+
+/* Slider containers */
+.slider-container {
+    margin: 15px 0;
+    width: 100%;
+}
+
+/* Sliders */
+input[type="range"] {
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #AA4A44;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #AA4A44;
+    cursor: pointer;
+    border: none;
+}
+
+/* Quantity og cost display */
+#material-quantity,
+#component-quantity,
+#material-cost,
+#component-cost {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+/* Order buttons */
+#material-order,
+#component-order {
+    width: 260px; /* Fast bredde for begge knapper */
+    height: 40px;
+    background-color: #AA4A44;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    display: block; /* Sikrer konsistent visning */
+    margin-left: auto; /* Sentrerer knappen */
+    margin-right: auto;
+}
+
+#material-order:hover,
+#component-order:hover {
+    background-color: #923f3a;
+}
+
+/* Juster spacing for innhold over knappene */
+.slider-container,
+#material-quantity,
+#component-quantity,
+#material-cost,
+#component-cost {
+    margin-bottom: 15px;
+}
+
+/* Container for begge seksjoner */
+.shop-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 20px auto;
+}
+
+/* Felles styling for order-knapper */
+.order-button {
+    width: 100px; /* Fast bredde for begge knapper */
+    height: 40px;
+    background-color: #AA4A44;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.order-button:hover {
+    background-color: #923f3a;
+}
+
+/* Coupon container styling */
+.coupon-container {
+    padding: 10px 0;
+    margin: 10px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+}
+
+#coupon-code {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.coupon-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.coupon-button:hover {
+    background-color: #218838;
+}
+
+/* Coupon styling */
+#coupon-code:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+.coupon-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+/* Hover effekt kun når knappen ikke er disabled */
+.coupon-button:not(:disabled):hover {
+    background-color: #218838;
+}
+
+/* Felles knappestil */
+.checkout-button,
+.coupon-button {
+    background-color: #AA4A44;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Hover effekt for alle knapper */
+.checkout-button:hover,
+.coupon-button:hover,
+.coupon-button:not(:disabled):hover {
+    background-color: #923f3a;
+}
+
+/* Spesifikk styling for coupon container */
+.coupon-container {
+    padding: 10px 0;
+    margin: 10px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+}
+
+/* Coupon input */
+#coupon-code {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Spesifikk styling for coupon button (overskriver noen av de felles stilene) */
+.coupon-button {
+    width: auto; /* Overskriver 100% bredde fra felles stil */
+    margin-top: 0; /* Fjerner margin fra felles stil */
+}
+
+/* Disabled states */
+.coupon-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+#coupon-code:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* Cart total container */
+.cart-total-container {
+    padding: 10px 0;
+    margin: 10px 0;
+    border-top: 1px solid #eee;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    position: relative;
+    animation: slideIn 0.3s;
+    text-align: center;  /* Sentrerer alt innhold */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+/* Auth form styles */
+.auth-form {
+    padding: 20px 0;
+}
+
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin: 0 auto;     /* Sentrerer form gruppene */
+    margin-bottom: 15px;
+    width: 80%;         /* Gir litt margin på sidene */
+}
+
+.form-group input {
+    width: 100%;        /* Fyller bredden av form-group */
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.auth-button:hover {
+    background-color: #45a049;
+}
+
+.switch-form {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.switch-form a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.switch-form a:hover {
+    text-decoration: underline;
+}
+
+/* Oppdatert styling for loginModal-knappen for å matche Shopping Cart */
+#loginModal button {
+    background-color: #AA4A44;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#loginModal button:hover {
+    background-color: #77342f;
+}
+
+#loginModal button:active {
+    background-color: #77342f;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    position: relative;
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Oppdatert styling for login-btn for å matche Shopping Cart */
+.login-btn {
+    background-color: #AA4A44;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 53px;
+    left: 700px;
+    height: 35px;
+    line-height: 15px;
+}
+
+.login-btn:hover {
+    background-color: #77342f;
+}
+
+.login-btn:active {
+    background-color: #77342f;
+}
+
+/* Modal header */
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+

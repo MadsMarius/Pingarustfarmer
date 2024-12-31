@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinga Rust Farmer</title>
+    <link rel="stylesheet" href="Stylesheet.css">
+    <link rel="styles" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+
+
+
+<body>
+    <header>
+        <div class="user-status">
+            <button class="login-btn" onclick="openLoginModal()">Sign In</button>
+        </div>
+        <img src="logo.png" alt="Pinga Rust Farmer Logo" class="logo">
+        <div class="cart-container">
+            <button class="cart-button">Shopping Cart</button>
+            <div class="cart-dropdown">
+                <ul id="cart-items">
+                    <li>Your cart is empty</li>
+                </ul>
+                <div class="cart-summary">
+                    <div class="coupon-section">
+                        <input type="text" id="coupon-input" placeholder="Enter coupon code">
+                        <button onclick="applyCouponCode()">Apply</button>
+                    </div>
+                    <div class="cart-totals">
+                        <div>Subtotal: $<span id="cart-subtotal">0.00</span></div>
+                        <div>Discount: $<span id="cart-discount">0.00</span></div>
+                        <div>Total: $<span id="cart-total">0.00</span></div>
+                    </div>
+                </div>
+                <button onclick="checkout()" class="checkout-button">Checkout</button>
+            </div>
+        </div>
+    </header>
+    
+
+
+
+
+    <div class="container">
+
+
+        <!-- Materials Box -->
+        <div class="box">
+            <h3>Materials</h3>
+            <div class="material-options">
+                <button onclick="selectMaterial('Wood', 0.00012, 1000)">Wood</button>
+                <button onclick="selectMaterial('Stone', 0.0002, 1000)">Stone</button>
+                <button onclick="selectMaterial('Metal', 0.00035, 1000)">Metal</button>
+                <button onclick="selectMaterial('HQM', 0.039, 100)">HQM</button>
+                <button onclick="selectMaterial('Sulfur', 0.0007, 1000)">Sulfur</button>
+                <button onclick="selectMaterial('Cloth', 0.002, 100)">Cloth</button>
+                <button onclick="selectMaterial('Leather', 0.007, 100)">Leather</button>
+                <button onclick="selectMaterial('Low Grade Fuel', 0.003, 100)">Low Grade Fuel</button>
+                <button onclick="selectMaterial('Crude Oil', 0.01, 100)">Crude Oil</button>
+                <button onclick="selectMaterial('Diesel Fuel', 0.50)">Diesel Fuel</button>
+            </div>
+            <div class="slider-container">
+                <label for="material-amount">
+                    Amount: <span id="material-quantity">1,000</span>
+                </label>
+                <input 
+                    type="range" 
+                    id="material-amount" 
+                    min="1000" 
+                    max="100000" 
+                    value="1000" 
+                    step="1000" 
+                    oninput="updateMaterialCost()">
+                <p>Total Cost: <span id="material-cost">$0.12</span></p>
+                <p id="precision-note" style="display: none; color: #AA4A44; font-size: 0.9em;">
+                    Precision mode enabled for Diesel Fuel.
+                </p>
+                <button class="order-button" id="material-order">Order</button>
+            </div>
+        </div>
+
+
+
+
+        <!-- Components Box -->
+        <div class="box">
+            <h3>Components</h3>
+            <div class="material-options">
+                <button onclick="selectComponent('Sewing Kit', 0.1)">Sewing Kit</button>
+                <button onclick="selectComponent('Metal Spring', 0.4)">Metal Spring</button>
+                <button onclick="selectComponent('Gear', 0.3)">Gear</button>
+                <button onclick="selectComponent('Sheet Metal', 0.25)">Sheet Metal</button>
+                <button onclick="selectComponent('Tarp', 0.25)">Tarp</button>
+                <button onclick="selectComponent('Metal Blade', 0.2)">Metal Blade</button>
+                <button onclick="selectComponent('Rope', 0.3)">Rope</button>
+                <button onclick="selectComponent('Road Sign', 0.2)">Road Sign</button>
+                <button onclick="selectComponent('Tech Trash', 0.5)">Tech Trash</button>
+                <button onclick="selectComponent('Targeting Computer', 1.4)">Targeting Computer</button>
+                <button onclick="selectComponent('CCTV Camera', 1.4)">CCTV Camera</button>
+                <button onclick="selectComponent('Propane Tank', 0.2)">Propane Tank</button>
+                <button onclick="selectComponent('Electric Fuse', 0.3)">Electric Fuse</button>
+            </div>
+
+            
+            <div class="slider-container">
+                <label for="component-amount">
+                    Amount: <span id="component-quantity">1</span>
+                </label>
+                <input 
+                    type="range" 
+                    id="component-amount" 
+                    min="1" 
+                    max="100" 
+                    value="1" 
+                    step="1" 
+                    oninput="updateComponentCost()">
+                <p>Total Cost: <span id="component-cost">$0.10</span></p>
+                <button class="order-button" id="component-order">Order</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer>
+        <p>&copy; 2024 Pinga Rust Farmer. All rights reserved.</p>
+    </footer>
+
+    <!-- Login Popup -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <h2>Sign In</h2>
+                <form onsubmit="event.preventDefault(); signIn();">
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="auth-button">Sign In</button>
+                </form>
+                <p class="switch-form">
+                    Don't have an account? <a href="#" onclick="switchToSignUp()">Sign Up</a>
+                </p>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signUpForm" class="auth-form" style="display: none;">
+                <h2>Sign Up</h2>
+                <form onsubmit="event.preventDefault(); signUp();">
+                    <div class="form-group">
+                        <input type="text" id="signupUsername" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="signupEmail" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signupPassword" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="auth-button">Sign Up</button>
+                </form>
+                <p class="switch-form">
+                    Already have an account? <a href="#" onclick="switchToSignIn()">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Popup -->
+    <div class="register-popup">
+        <div class="register-content">
+            <button class="close-button">&times;</button>
+            <h2>Registrer deg</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="reg-username">Brukernavn:</label>
+                    <input type="text" id="reg-username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">E-post:</label>
+                    <input type="email" id="reg-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Passord:</label>
+                    <input type="password" id="reg-password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-confirm-password">Bekreft passord:</label>
+                    <input type="password" id="reg-confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit">Registrer</button>
+            </form>
+            <p>Allerede registrert? <a href="#" class="login-link">Logg inn her</a></p>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Sign In</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
